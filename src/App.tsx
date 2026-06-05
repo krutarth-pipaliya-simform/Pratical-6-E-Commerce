@@ -1,5 +1,7 @@
+import { Router } from "./components/Router/Router";
+
 function App() {
-  return <> HELLO </>;
+    return <Router />;
 }
 
 export default App;
