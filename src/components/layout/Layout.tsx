@@ -5,10 +5,12 @@ import { ProductsProvider } from "../contextProvider/ProductsProvider";
 
 export const Layout = () => {
     return (
-        <ProductsProvider>
-            <Header />
-            <Outlet />
-            <Footer />
-        </ProductsProvider>
+        <div className="min-h-dvh flex flex-col">
+            <ProductsProvider>
+                <Header />
+                <Outlet />
+                <Footer />
+            </ProductsProvider>
+        </div>
     );
 };
