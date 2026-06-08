@@ -1,4 +1,5 @@
 import { createContext, useContext, type SetStateAction } from "react";
+
 import type { ProductType } from "../components/types/ProductType";
 
 interface ProductsContextType {

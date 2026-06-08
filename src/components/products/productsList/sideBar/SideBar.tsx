@@ -1,6 +1,6 @@
 export const SideBar = () => {
     return (
-        <aside className="p-4 shadow-xl bg-[#FE7A04] text-white min-w-xs">
+        <aside className="sticky top-0 h-screen p-4 shadow-xl bg-[#FE7A04] text-white min-w-xs">
             <div>
                 Category
                 <ul>
