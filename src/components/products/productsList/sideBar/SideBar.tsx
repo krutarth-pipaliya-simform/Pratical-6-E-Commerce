@@ -11,11 +11,11 @@ export const SideBar = () => {
                             name="Electronics"
                             value="Electronics"
                         />
-                        <label htmlFor="vehicle1"> Electornics</label>
+                        <label htmlFor="Electronics"> Electornics</label>
                     </li>
                     <li>
                         <input type="checkbox" id="Fashion" name="Fashion" value="Fashion" />
-                        <label htmlFor="vehicle1"> Fashion</label>
+                        <label htmlFor="Fashion"> Fashion</label>
                     </li>
                 </ul>
             </div>

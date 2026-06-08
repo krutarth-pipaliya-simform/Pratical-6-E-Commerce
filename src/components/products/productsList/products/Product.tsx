@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import type { ProductType } from "../../../types/ProductType";
 
 interface ProductPropsType {
@@ -5,5 +6,6 @@ interface ProductPropsType {
 }
 
 export const Product = ({ product }: ProductPropsType) => {
-    return <li>{product.title}</li>;
+    const navigate = useNavigate();
+    return <li onClick={() => navigate(`product/${product.id}`)}>{product.title}</li>;
 };
