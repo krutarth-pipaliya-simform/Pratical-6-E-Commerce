@@ -15,13 +15,19 @@ export const ProductsProvider = ({ children }: QueryProviderPropsType) => {
 
 const useProductsState = () => {
     const [query, setQuery] = useState("");
-    const [products, setProducts] = useState<Array<ProductType>>([]);
+    const [allProducts, setProducts] = useState<Array<ProductType>>([]);
 
     useEffect(() => {
         getProducts().then((data) => {
             setProducts(data);
         });
-    }, [query]);
+    }, []);
+
+    const products = allProducts.filter(
+        ({ title, description }) =>
+            title.toLocaleLowerCase().includes(query) ||
+            description.toLocaleLowerCase().includes(query),
+    );
 
     return {
         query,
