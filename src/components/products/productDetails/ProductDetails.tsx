@@ -5,7 +5,7 @@ import type { ProductType } from "../../types/ProductType";
 
 export const ProductDetails = () => {
     const { productId } = useParams();
-    const [product, setProduct] = useState<ProductType>(undefined);
+    const [product, setProduct] = useState<ProductType | undefined>(undefined);
     const [mainImage, setMainImage] = useState("");
     const [isAdded, setIsAdded] = useState(false);
     const navigate = useNavigate();
@@ -13,7 +13,7 @@ export const ProductDetails = () => {
     const discount = 20;
 
     useEffect(() => {
-        getProduct(productId).then((data) => {
+        getProduct(productId ?? "").then((data) => {
             setProduct(data);
             setMainImage(data.images[0]);
         });
