@@ -10,9 +10,9 @@ interface ProductsContextType {
 }
 
 export const useProductsContext = () => {
-    const context = useContext(QueryContext);
+    const context = useContext(ProductContext);
     if (!context) throw new Error("Please Wrap the Context");
     return context;
 };
 
-export const QueryContext = createContext<ProductsContextType | undefined>(undefined);
+export const ProductContext = createContext<ProductsContextType | undefined>(undefined);

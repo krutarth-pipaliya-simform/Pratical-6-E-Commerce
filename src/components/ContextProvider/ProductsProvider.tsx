@@ -1,9 +1,9 @@
 import { useEffect, useState, type ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { QueryContext } from "../../hooks/useProductsContext";
 import type { ProductType } from "../types/ProductType";
 import { getProducts } from "../../services/api/userApi";
-import { useNavigate } from "react-router-dom";
+import { ProductContext } from "../../hooks/useProductsContext";
 
 interface QueryProviderPropsType {
     children: ReactNode;
@@ -11,7 +11,7 @@ interface QueryProviderPropsType {
 
 export const ProductsProvider = ({ children }: QueryProviderPropsType) => {
     const contextData = useProductsState();
-    return <QueryContext.Provider value={contextData}>{children}</QueryContext.Provider>;
+    return <ProductContext.Provider value={contextData}>{children}</ProductContext.Provider>;
 };
 
 const useProductsState = () => {

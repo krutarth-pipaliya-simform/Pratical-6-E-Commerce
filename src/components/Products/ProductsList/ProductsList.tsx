@@ -1,11 +1,11 @@
-import { Products } from "./products/Products";
-import { SideBar } from "./sideBar/SideBar";
+import { ProductsWrapper } from "./ProductsWrapper/ProductsWrapper";
+import { SideBar } from "./SideBar/SideBar";
 
 export const ProductsList = () => {
     return (
         <div className="products-wrapper flex-1 flex">
             <SideBar />
-            <Products />
+            <ProductsWrapper />
         </div>
     );
 };

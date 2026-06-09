@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 
-import { Header } from "../header/Header";
-import { Footer } from "../footer/Footer";
-import { ProductsProvider } from "../contextProvider/ProductsProvider";
+import { Header } from "../Header/Header";
+import { Footer } from "../Footer/Footer";
+import { ProductsProvider } from "../ContextProvider/ProductsProvider";
 
 export const Layout = () => {
     return (

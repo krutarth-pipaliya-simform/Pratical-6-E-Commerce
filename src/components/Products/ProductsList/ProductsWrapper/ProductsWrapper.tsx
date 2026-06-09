@@ -1,7 +1,7 @@
 import { useProductsContext } from "../../../../hooks/useProductsContext";
 import { Product } from "./Product";
 
-export const Products = () => {
+export const ProductsWrapper = () => {
     const { products } = useProductsContext();
     return (
         <main className="p-4">

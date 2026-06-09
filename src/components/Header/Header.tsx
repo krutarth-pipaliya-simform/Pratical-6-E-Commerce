@@ -1,4 +1,4 @@
-import { Search } from "./search/Search";
+import { Search } from "./Search/Search";
 
 import img from "../../assets/headerLogo.png";
 import { useNavigate } from "react-router-dom";
