@@ -10,7 +10,7 @@ export const Header = () => {
     };
     return (
         <header className="flex gap-4 items-center justify-between px-8 shadow-xl ">
-            <img className="h-20 cursor-pointer" src={img} onClick={handleOnClick} />
+            <img className="h-20 cursor-pointer" src={img} alt="Logo" onClick={handleOnClick} />
             <Search />
         </header>
     );

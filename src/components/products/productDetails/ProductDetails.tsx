@@ -22,7 +22,7 @@ export const ProductDetails = () => {
     if (!product) return <div className="flex-1 min-h-full">"Loading..."</div>;
 
     return (
-        <div className="p-4 flex-1 min-h-full flex gap-4 relative">
+        <main className="p-4 flex-1 min-h-full flex gap-4 relative">
             <span
                 className="cursor-pointer px-2 aspect-square rounded-full bg-[#FE7A04] absolute right-4 top-4 text-white"
                 onClick={() => navigate("/")}
@@ -70,6 +70,6 @@ export const ProductDetails = () => {
                     {isAdded ? "✓ Added" : "Add to Cart"}
                 </button>
             </section>
-        </div>
+        </main>
     );
 };
