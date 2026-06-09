@@ -5,3 +5,9 @@ export const getProducts = async () => {
         return res.data;
     });
 };
+
+export const getProduct = async (productId: string) => {
+    return await GET(`products/${productId}`).then((res) => {
+        return res?.data;
+    });
+};
