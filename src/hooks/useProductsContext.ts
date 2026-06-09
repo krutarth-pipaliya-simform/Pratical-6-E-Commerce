@@ -4,7 +4,7 @@ import type { ProductType } from "../components/types/ProductType";
 
 interface ProductsContextType {
     query: string;
-    setQuery: (value: SetStateAction<string>) => void;
+    searchProducts: (searchQuery: string) => void;
     products: Array<ProductType>;
     setProducts: (value: SetStateAction<Array<ProductType>>) => void;
 }
