@@ -5,7 +5,7 @@ import type { ProductType } from "../../types/ProductType";
 
 export const ProductDetails = () => {
     const { productId } = useParams();
-    const [product, setProduct] = useState<ProductType | undefined>(undefined);
+    const [product, setProduct] = useState<ProductType | null>(null);
     const [mainImage, setMainImage] = useState("");
     const [isAdded, setIsAdded] = useState(false);
     const navigate = useNavigate();
