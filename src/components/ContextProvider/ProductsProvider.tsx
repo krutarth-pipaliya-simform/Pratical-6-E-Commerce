@@ -1,9 +1,9 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 
-import type { ProductType } from "../types/ProductType";
-import { getProducts } from "../../services/api/userApi";
 import { ProductContext } from "../../hooks/useProductsContext";
+import { GET } from "../../services/httpMethods";
+import type { ProductType } from "../types/ProductType";
 
 interface QueryProviderPropsType {
     children: ReactNode;
@@ -42,4 +42,10 @@ const useProductsState = () => {
         products,
         setProducts,
     };
+};
+
+const getProducts = async () => {
+    return await GET("products?offset=0&limit=20").then((res) => {
+        return res.data;
+    });
 };

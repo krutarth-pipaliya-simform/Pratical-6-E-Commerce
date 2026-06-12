@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import type { ProductType } from "../../../types/ProductType";
+import type { ProductType } from "../../types/ProductType";
 import { useState } from "react";
 
 interface ProductPropsType {
     product: ProductType;
 }
 
-export const Product = ({
+export const ProductCard = ({
     product: { id, title, images, price, description },
 }: ProductPropsType) => {
     const navigate = useNavigate();

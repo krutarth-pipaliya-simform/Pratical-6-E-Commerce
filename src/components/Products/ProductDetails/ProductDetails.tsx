@@ -1,7 +1,8 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { getProduct } from "../../../services/api/userApi";
 import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
 import type { ProductType } from "../../types/ProductType";
+import { GET } from "../../../services/httpMethods";
 
 export const ProductDetails = () => {
     const { productId } = useParams();
@@ -72,4 +73,10 @@ export const ProductDetails = () => {
             </section>
         </main>
     );
+};
+
+const getProduct = async (productId: string) => {
+    return await GET(`products/${productId}`).then((res) => {
+        return res?.data;
+    });
 };
