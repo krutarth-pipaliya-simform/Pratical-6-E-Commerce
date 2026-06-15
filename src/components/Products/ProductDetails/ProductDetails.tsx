@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import type { ProductType } from "../types/ProductType";
 import { GET } from "../../../services/httpMethods";
+import { FALLBACK_IMAGE } from "../../../utils/constansts/fallback";
 
 export const ProductDetails = () => {
     const { productId } = useParams();
@@ -12,7 +13,6 @@ export const ProductDetails = () => {
     const navigate = useNavigate();
 
     const discount = 20;
-    const FALLBACK_IMAGE = "https://placehold.co/400x300?text=No+Image";
 
     useEffect(() => {
         getProduct(productId ?? "").then((data) => {

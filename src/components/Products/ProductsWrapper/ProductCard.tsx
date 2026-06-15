@@ -1,6 +1,8 @@
-import { useNavigate } from "react-router-dom";
-import type { ProductType } from "../types/ProductType";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import type { ProductType } from "../types/ProductType";
+import { FALLBACK_IMAGE } from "../../../utils/constansts/fallback";
 
 interface ProductPropsType {
     product: ProductType;
@@ -13,7 +15,6 @@ export const ProductCard = ({
     const [isAdded, setIsAdded] = useState(false);
     const discount = 20;
     const originalPrice = Math.round(price / (1 - discount / 100));
-    const FALLBACK_IMAGE = "https://placehold.co/400x300?text=No+Image";
 
     return (
         <li
