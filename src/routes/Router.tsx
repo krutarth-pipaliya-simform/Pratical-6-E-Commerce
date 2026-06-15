@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { ProductsList } from "../components/Products/ProductsWrapper/ProductsWrapper";
+import { ProductsWrapper } from "../components/Products/ProductsWrapper/ProductsWrapper";
 import { ProductDetails } from "../components/Products/ProductDetails/ProductDetails";
 import { Layout } from "../components/Layout/Layout";
 
@@ -11,7 +11,7 @@ export const Router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <ProductsList />,
+                element: <ProductsWrapper />,
             },
             {
                 path: "product/:productId",
