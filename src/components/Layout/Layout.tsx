@@ -6,9 +6,9 @@ import { ProductsProvider } from "../ContextProvider/ProductsProvider";
 import { useRef } from "react";
 
 export const Layout = () => {
-    const searchRef = useRef<HTMLFormElement | null>(null);
+    const searchRef = useRef<HTMLInputElement | null>(null);
     const focusOnSearch = () => {
-        searchRef.current.focus();
+        searchRef.current?.focus();
     };
     return (
         <div className="h-dvh flex flex-col overflow-hidden">

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import type { RefObject } from "react";
 
 interface HeaderPropsType {
-    searchRef: RefObject<HTMLFormElement>;
+    searchRef: RefObject<HTMLInputElement | null>;
 }
 
 export const Header = ({ searchRef }: HeaderPropsType) => {

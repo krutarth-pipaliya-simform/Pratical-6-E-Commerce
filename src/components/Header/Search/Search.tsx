@@ -1,7 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useProductsContext } from "../../../hooks/useProductsContext";
+import type { RefObject } from "react";
 
-export const Search = ({ ref }) => {
+interface SearchPropsType {
+    ref: RefObject<HTMLInputElement | null>;
+}
+
+export const Search = ({ ref }: SearchPropsType) => {
     const { query, searchProducts } = useProductsContext();
     const navigate = useNavigate();
     return (
