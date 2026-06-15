@@ -12,6 +12,7 @@ export const ProductDetails = () => {
     const navigate = useNavigate();
 
     const discount = 20;
+    const FALLBACK_IMAGE = "https://placehold.co/400x300?text=No+Image";
 
     useEffect(() => {
         getProduct(productId ?? "").then((data) => {
@@ -31,7 +32,16 @@ export const ProductDetails = () => {
                 x
             </span>
             <section className="flex-1 flex flex-col items-center">
-                <img className="w-[30vw] aspect-square" src={mainImage} alt="NA" />
+                <img
+                    className="w-[30vw] aspect-square"
+                    src={mainImage}
+                    alt="NA"
+                    onError={(e) => {
+                        const target = e.currentTarget;
+                        target.onerror = null;
+                        target.src = FALLBACK_IMAGE;
+                    }}
+                />
                 <div className="mt-4 flex gap-4">
                     {product.images.map((src) => {
                         return (
@@ -41,6 +51,11 @@ export const ProductDetails = () => {
                                 className={`w-[5vw] aspect-square ${src === mainImage ? "ring-2 ring-[#0360F4]" : ""}`}
                                 src={src}
                                 alt="NA"
+                                onError={(e) => {
+                                    const target = e.currentTarget;
+                                    target.onerror = null;
+                                    target.src = FALLBACK_IMAGE;
+                                }}
                             />
                         );
                     })}

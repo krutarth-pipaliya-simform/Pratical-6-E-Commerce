@@ -13,6 +13,8 @@ export const ProductCard = ({
     const [isAdded, setIsAdded] = useState(false);
     const discount = 20;
     const originalPrice = Math.round(price / (1 - discount / 100));
+    const FALLBACK_IMAGE = "https://placehold.co/400x300?text=No+Image";
+
     return (
         <li
             onClick={() => navigate(`/product/${id}`)}
@@ -23,9 +25,14 @@ export const ProductCard = ({
                     {discount}% OFF
                 </span>
                 <img
-                    src={images[0]}
+                    src={images?.[0]}
                     alt={title}
                     className="h-56 w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                    onError={(e) => {
+                        const target = e.currentTarget;
+                        target.onerror = null;
+                        target.src = FALLBACK_IMAGE;
+                    }}
                 />
             </div>
             <div className="flex h-56 flex-col p-5">
