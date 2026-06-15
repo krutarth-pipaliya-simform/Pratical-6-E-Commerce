@@ -1,4 +1,7 @@
-export const Footer = () => {
+interface FooterPropsType {
+    focusOnSearch: () => void;
+}
+export const Footer = ({ focusOnSearch }: FooterPropsType) => {
     return (
         <footer className="flex flex-col bg-[#0360F4] text-white p-4">
             <div className="text-center">© 1996-2026, QuickCart.com, Inc. or its affiliates</div>
@@ -6,6 +9,7 @@ export const Footer = () => {
             <a className="text-center" href="#">
                 Contact Us
             </a>
+            <button onClick={focusOnSearch}>Focus on search</button>
         </footer>
     );
 };

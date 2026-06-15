@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useProductsContext } from "../../../hooks/useProductsContext";
 
-export const Search = () => {
+export const Search = ({ ref }) => {
     const { query, searchProducts } = useProductsContext();
     const navigate = useNavigate();
     return (
@@ -13,6 +13,7 @@ export const Search = () => {
             className="align-center"
         >
             <input
+                ref={ref}
                 type="search"
                 value={query}
                 onChange={(e) => searchProducts(e.target.value)}
