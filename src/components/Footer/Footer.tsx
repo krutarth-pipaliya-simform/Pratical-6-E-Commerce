@@ -9,7 +9,9 @@ export const Footer = ({ focusOnSearch }: FooterPropsType) => {
             <a className="text-center" href="#">
                 Contact Us
             </a>
-            <button onClick={focusOnSearch}>Focus on search</button>
+            <button className="underline cursor-pointer" onClick={focusOnSearch}>
+                Focus on search
+            </button>
         </footer>
     );
 };
