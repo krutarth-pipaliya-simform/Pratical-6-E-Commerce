@@ -2,7 +2,7 @@ import { useState, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ProductContext } from "../../hooks/useProductsContext";
-import type { ProductType } from "../types/ProductType";
+import type { ProductType } from "../Products/types/ProductType";
 
 interface QueryProviderPropsType {
     children: ReactNode;
