@@ -1,14 +1,12 @@
-import type { RefObject } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Search } from "./Search/Search";
 import img from "../../assets/headerLogo.png";
+import { useProductsContext } from "../../hooks/useProductsContext";
 
-interface HeaderPropsType {
-    searchRef: RefObject<HTMLInputElement | null>;
-}
+export const Header = () => {
+    const { searchRef } = useProductsContext();
 
-export const Header = ({ searchRef }: HeaderPropsType) => {
     const navigate = useNavigate();
     const handleOnClick = () => {
         navigate("/");

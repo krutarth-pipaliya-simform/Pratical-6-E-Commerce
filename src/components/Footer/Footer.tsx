@@ -1,7 +1,8 @@
-interface FooterPropsType {
-    focusOnSearch: () => void;
-}
-export const Footer = ({ focusOnSearch }: FooterPropsType) => {
+import { useProductsContext } from "../../hooks/useProductsContext";
+
+export const Footer = () => {
+    const { focusOnSearch } = useProductsContext();
+
     return (
         <footer className="flex flex-col bg-[#0360F4] text-white p-4">
             <div className="text-center">© 1996-2026, QuickCart.com, Inc. or its affiliates</div>

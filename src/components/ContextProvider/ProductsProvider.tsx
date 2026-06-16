@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ProductContext } from "../../hooks/useProductsContext";
@@ -17,6 +17,11 @@ const useProductsState = () => {
     const [query, setQuery] = useState("");
     const [allProducts, setProducts] = useState<Array<ProductType>>([]);
 
+    const searchRef = useRef<HTMLInputElement | null>(null);
+    const focusOnSearch = () => {
+        searchRef.current?.focus();
+    };
+
     const navigate = useNavigate();
     const searchProducts = (searchQuery = "") => {
         setQuery(searchQuery);
@@ -34,5 +39,7 @@ const useProductsState = () => {
         searchProducts,
         products,
         setProducts,
+        searchRef,
+        focusOnSearch,
     };
 };
