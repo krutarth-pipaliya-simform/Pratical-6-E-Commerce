@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import type { ProductType } from "../types/ProductType";
 import { GET } from "../../../services/httpMethods";
+import { FALLBACK_IMAGE } from "../../../utilities/constants";
 
 export const ProductDetails = () => {
     const { productId } = useParams();
@@ -31,7 +32,16 @@ export const ProductDetails = () => {
                 x
             </span>
             <section className="flex-1 flex flex-col items-center">
-                <img className="w-[30vw] aspect-square" src={mainImage} alt="NA" />
+                <img
+                    className="w-[30vw] aspect-square"
+                    src={mainImage}
+                    alt="NA"
+                    onError={(e) => {
+                        const target = e.currentTarget;
+                        target.onerror = null;
+                        target.src = FALLBACK_IMAGE;
+                    }}
+                />
                 <div className="mt-4 flex gap-4">
                     {product.images.map((src) => {
                         return (
@@ -41,6 +51,11 @@ export const ProductDetails = () => {
                                 className={`w-[5vw] aspect-square ${src === mainImage ? "ring-2 ring-[#0360F4]" : ""}`}
                                 src={src}
                                 alt="NA"
+                                onError={(e) => {
+                                    const target = e.currentTarget;
+                                    target.onerror = null;
+                                    target.src = FALLBACK_IMAGE;
+                                }}
                             />
                         );
                     })}

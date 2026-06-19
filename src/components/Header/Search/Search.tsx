@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
+
 import { useProductsContext } from "../../../hooks/useProductsContext";
 
 export const Search = () => {
-    const { query, searchProducts } = useProductsContext();
+    const { searchRef: ref, query, searchProducts } = useProductsContext();
     const navigate = useNavigate();
+
     return (
         <form
             onSubmit={(e) => {
@@ -13,6 +15,7 @@ export const Search = () => {
             className="align-center"
         >
             <input
+                ref={ref}
                 type="search"
                 value={query}
                 onChange={(e) => searchProducts(e.target.value)}
