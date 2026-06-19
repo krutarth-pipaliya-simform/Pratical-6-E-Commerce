@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import type { ProductType } from "../types/ProductType";
-import { FALLBACK_IMAGE } from "../../../utils/constansts/fallback";
+import { FALLBACK_IMAGE } from "../../../utilities/constants";
 
 interface ProductPropsType {
     product: ProductType;

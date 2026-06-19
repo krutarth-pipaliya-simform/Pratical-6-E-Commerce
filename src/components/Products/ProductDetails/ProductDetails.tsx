@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import type { ProductType } from "../types/ProductType";
 import { GET } from "../../../services/httpMethods";
-import { FALLBACK_IMAGE } from "../../../utils/constansts/fallback";
+import { FALLBACK_IMAGE } from "../../../utilities/constants";
 
 export const ProductDetails = () => {
     const { productId } = useParams();
