@@ -33,6 +33,7 @@ const useProductsState = () => {
             title.toLocaleLowerCase().includes(query) ||
             description.toLocaleLowerCase().includes(query),
     );
+    const categories = new Array(...new Set(products.map(({ category }) => category.name)));
 
     return {
         query,
@@ -41,5 +42,6 @@ const useProductsState = () => {
         setProducts,
         searchRef,
         focusOnSearch,
+        categories,
     };
 };

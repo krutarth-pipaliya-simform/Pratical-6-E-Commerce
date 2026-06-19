@@ -9,6 +9,7 @@ interface ProductsContextType {
     setProducts: (value: SetStateAction<Array<ProductType>>) => void;
     focusOnSearch: () => void;
     searchRef: RefObject<HTMLInputElement | null>;
+    categories: Array<string>;
 }
 
 export const useProductsContext = () => {
