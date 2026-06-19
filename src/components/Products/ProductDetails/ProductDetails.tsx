@@ -1,27 +1,25 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import type { ProductType } from "../types/ProductType";
 import { GET } from "../../../services/httpMethods";
 import { FALLBACK_IMAGE } from "../../../utilities/constants";
+import { useQuery } from "@tanstack/react-query";
 
 export const ProductDetails = () => {
     const { productId } = useParams();
-    const [product, setProduct] = useState<ProductType | null>(null);
     const [mainImage, setMainImage] = useState("");
     const [isAdded, setIsAdded] = useState(false);
     const navigate = useNavigate();
 
     const discount = 20;
 
-    useEffect(() => {
-        getProduct(productId ?? "").then((data) => {
-            setProduct(data);
-            setMainImage(data.images[0]);
-        });
-    }, [productId]);
+    const { data: product, isLoading } = useQuery({
+        queryKey: ["product"],
+        queryFn: () => getProduct(productId),
+    });
 
-    if (!product) return <div className="flex-1 min-h-full">"Loading..."</div>;
+    if (isLoading) return <div className="flex-1 min-h-full">"Loading..."</div>;
+    if (mainImage === "") setMainImage(product.images[0]);
 
     return (
         <main className="p-4 flex-1 min-h-full flex gap-4 relative">
