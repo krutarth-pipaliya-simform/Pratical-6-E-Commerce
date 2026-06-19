@@ -9,7 +9,7 @@ export const FilterProducts = () => {
                 Category
                 <ul>
                     {categories.map((category) => (
-                        <FilterItem category={category} />
+                        <FilterItem key={category} category={category} />
                     ))}
                 </ul>
             </div>
