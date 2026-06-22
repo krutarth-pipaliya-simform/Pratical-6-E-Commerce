@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 import { GET } from "../../../services/httpMethods";
 import { FALLBACK_IMAGE } from "../../../utilities/constants";
@@ -13,12 +13,17 @@ export const ProductDetails = () => {
 
     const discount = 20;
 
-    const { data: product, isLoading } = useQuery({
+    const {
+        data: product,
+        isLoading,
+        error,
+    } = useQuery({
         queryKey: ["product"],
         queryFn: () => getProduct(productId),
     });
 
     if (isLoading) return <div className="flex-1 min-h-full">"Loading..."</div>;
+    if (error) return <Navigate to={"/404"} />;
     if (mainImage === "") setMainImage(product.images[0]);
 
     return (
