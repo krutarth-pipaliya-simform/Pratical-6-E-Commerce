@@ -1,7 +1,7 @@
+import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { useProductsContext } from "../../../hooks/useProductsContext";
-import { useState } from "react";
 
 export const Search = () => {
     const { searchRef: ref } = useProductsContext();
