@@ -4,6 +4,7 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { GET } from "../../../services/httpMethods";
 import { FALLBACK_IMAGE } from "../../../utilities/constants";
 import { useQuery } from "@tanstack/react-query";
+import { isAxiosError } from "axios";
 
 export const ProductDetails = () => {
     const { productId } = useParams();
@@ -22,7 +23,15 @@ export const ProductDetails = () => {
     });
 
     if (isLoading) return <div className="flex-1 min-h-full">"Loading..."</div>;
-    if (error) return <Navigate to={"/404"} />;
+
+    if (error) {
+        if (isAxiosError(error) && error.response?.status === 404) {
+            return <Navigate to="/404" replace />;
+        }
+
+        return <div>Something went wrong. Please try again.</div>;
+    }
+
     if (mainImage === "") setMainImage(product.images[0]);
 
     return (
