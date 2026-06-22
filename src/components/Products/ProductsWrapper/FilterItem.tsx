@@ -6,14 +6,12 @@ export const FilterItem = ({ category }: { category: string }) => {
         <li>
             <input
                 onChange={(e) => {
-                    console.log(e.target.checked);
                     if (e.target.checked) {
                         setParams((prev) => {
                             prev.append("categories", e.target.value);
                             return prev;
                         });
                     } else {
-                        console.log("Run");
                         setParams((prev) => {
                             const params = new URLSearchParams(prev);
 
