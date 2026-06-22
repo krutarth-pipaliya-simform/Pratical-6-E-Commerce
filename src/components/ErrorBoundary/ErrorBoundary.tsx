@@ -1,4 +1,4 @@
-import { Component, type ReactNode } from "react";
+import { Component, type ErrorInfo, type ReactNode } from "react";
 
 export class ErrorBoundary extends Component<{
     children: ReactNode;
@@ -12,6 +12,10 @@ export class ErrorBoundary extends Component<{
         return {
             hasError: true,
         };
+    }
+
+    componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+        console.log(error, errorInfo);
     }
 
     render() {
