@@ -12,14 +12,13 @@ export const ProductDetails = () => {
     const navigate = useNavigate();
 
     const discount = 20;
-
     const {
         data: product,
         isLoading,
         error,
     } = useQuery({
         queryKey: ["product"],
-        queryFn: () => getProduct(productId),
+        queryFn: () => getProduct(productId ?? ""),
     });
 
     if (isLoading) return <div className="flex-1 min-h-full">"Loading..."</div>;
@@ -46,7 +45,7 @@ export const ProductDetails = () => {
                     }}
                 />
                 <div className="mt-4 flex gap-4">
-                    {product.images.map((src) => {
+                    {product.images.map((src: string) => {
                         return (
                             <img
                                 onClick={() => setMainImage(src)}
