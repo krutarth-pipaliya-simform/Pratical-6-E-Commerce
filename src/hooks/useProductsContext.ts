@@ -1,12 +1,6 @@
-import { createContext, useContext, type RefObject, type SetStateAction } from "react";
-
-import type { ProductType } from "../components/Products/types/ProductType";
+import { createContext, useContext, type RefObject } from "react";
 
 interface ProductsContextType {
-    query: string;
-    searchProducts: (searchQuery: string) => void;
-    products: Array<ProductType>;
-    setProducts: (value: SetStateAction<Array<ProductType>>) => void;
     focusOnSearch: () => void;
     searchRef: RefObject<HTMLInputElement | null>;
 }

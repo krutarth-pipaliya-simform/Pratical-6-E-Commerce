@@ -1,10 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { useProductsContext } from "../../../hooks/useProductsContext";
 
 export const Search = () => {
-    const { searchRef: ref, query, searchProducts } = useProductsContext();
+    const { searchRef: ref } = useProductsContext();
     const navigate = useNavigate();
+    const [, setParams] = useSearchParams();
+    const [query, setQuery] = useState("");
 
     return (
         <form
@@ -18,7 +21,14 @@ export const Search = () => {
                 ref={ref}
                 type="search"
                 value={query}
-                onChange={(e) => searchProducts(e.target.value)}
+                onChange={(e) => {
+                    setParams((prev) => {
+                        const newParams = new URLSearchParams(prev);
+                        newParams.set("search", e.target.value);
+                        setQuery(e.target.value);
+                        return newParams;
+                    });
+                }}
                 placeholder="Search products..."
             />
         </form>

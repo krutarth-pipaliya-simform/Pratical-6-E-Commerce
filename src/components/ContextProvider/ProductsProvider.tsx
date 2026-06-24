@@ -1,8 +1,6 @@
-import { useRef, useState, type ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRef, type ReactNode } from "react";
 
 import { ProductContext } from "../../hooks/useProductsContext";
-import type { ProductType } from "../Products/types/ProductType";
 
 interface QueryProviderPropsType {
     children: ReactNode;
@@ -14,31 +12,12 @@ export const ProductsProvider = ({ children }: QueryProviderPropsType) => {
 };
 
 const useProductsState = () => {
-    const [query, setQuery] = useState("");
-    const [allProducts, setProducts] = useState<Array<ProductType>>([]);
-
     const searchRef = useRef<HTMLInputElement | null>(null);
     const focusOnSearch = () => {
         searchRef.current?.focus();
     };
 
-    const navigate = useNavigate();
-    const searchProducts = (searchQuery = "") => {
-        setQuery(searchQuery);
-        navigate("/");
-    };
-
-    const products = allProducts.filter(
-        ({ title, description }) =>
-            title.toLocaleLowerCase().includes(query) ||
-            description.toLocaleLowerCase().includes(query),
-    );
-
     return {
-        query,
-        searchProducts,
-        products,
-        setProducts,
         searchRef,
         focusOnSearch,
     };

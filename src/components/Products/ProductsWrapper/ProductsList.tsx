@@ -1,31 +1,40 @@
-import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
-import { useProductsContext } from "../../../hooks/useProductsContext";
 import { ProductCard } from "./ProductCard";
-import { GET } from "../../../services/httpMethods";
+import { useProducts } from "../../../hooks/useProducts";
+import type { ProductType } from "../types/ProductType";
 
 export const ProductsList = () => {
-    const { products, setProducts } = useProductsContext();
+    const [params] = useSearchParams();
+    const { products, isLoading, error } = useProducts();
 
-    useEffect(() => {
-        getProducts().then((data) => {
-            setProducts(data);
-        });
-    }, [setProducts]);
+    const categories = params.getAll("categories");
+
+    const search = params.get("search")?.toLowerCase() ?? "";
+
+    const renderProducts = products.filter((product: ProductType) => {
+        const matchesCategory =
+            categories.length === 0 || categories.includes(product.category.name);
+
+        const matchesSearch =
+            search === "" ||
+            product.title.toLowerCase().includes(search) ||
+            product.description.toLowerCase().includes(search);
+
+        return matchesCategory && matchesSearch;
+    });
+
+    if (isLoading) return <p>Loading...</p>;
+
+    if (error) return <p>Something went wrong</p>;
 
     return (
         <main className="p-4">
             <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {products.map((product) => (
+                {renderProducts.map((product: ProductType) => (
                     <ProductCard key={product.id} product={product} />
                 ))}
             </ul>
         </main>
     );
-};
-
-const getProducts = async () => {
-    return await GET("products?offset=0&limit=20").then((res) => {
-        return res.data;
-    });
 };

@@ -1,27 +1,38 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
-import type { ProductType } from "../types/ProductType";
 import { GET } from "../../../services/httpMethods";
 import { FALLBACK_IMAGE } from "../../../utilities/constants";
+import { useQuery } from "@tanstack/react-query";
+import { isAxiosError } from "axios";
 
 export const ProductDetails = () => {
     const { productId } = useParams();
-    const [product, setProduct] = useState<ProductType | null>(null);
     const [mainImage, setMainImage] = useState("");
     const [isAdded, setIsAdded] = useState(false);
     const navigate = useNavigate();
 
     const discount = 20;
+    const {
+        data: product,
+        isLoading,
+        error,
+    } = useQuery({
+        queryKey: ["product"],
+        queryFn: () => getProduct(productId ?? ""),
+    });
 
-    useEffect(() => {
-        getProduct(productId ?? "").then((data) => {
-            setProduct(data);
-            setMainImage(data.images[0]);
-        });
-    }, [productId]);
+    if (isLoading) return <div className="flex-1 min-h-full">"Loading..."</div>;
 
-    if (!product) return <div className="flex-1 min-h-full">"Loading..."</div>;
+    if (error) {
+        if (isAxiosError(error) && error.response?.status === 404) {
+            return <Navigate to="/404" replace />;
+        }
+
+        return <div>Something went wrong. Please try again.</div>;
+    }
+
+    if (mainImage === "") setMainImage(product.images[0]);
 
     return (
         <main className="p-4 flex-1 min-h-full flex gap-4 relative">
@@ -43,7 +54,7 @@ export const ProductDetails = () => {
                     }}
                 />
                 <div className="mt-4 flex gap-4">
-                    {product.images.map((src) => {
+                    {product.images.map((src: string) => {
                         return (
                             <img
                                 onClick={() => setMainImage(src)}

@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
 import { ProductsWrapper } from "../components/Products/ProductsWrapper/ProductsWrapper";
 import { ProductDetails } from "../components/Products/ProductDetails/ProductDetails";
@@ -18,5 +18,13 @@ export const Router = createBrowserRouter([
                 element: <ProductDetails />,
             },
         ],
+    },
+    {
+        path: "/404",
+        element: <>404</>,
+    },
+    {
+        path: "*",
+        element: <Navigate to="/404" replace />,
     },
 ]);
