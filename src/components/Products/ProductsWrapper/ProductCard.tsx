@@ -16,12 +16,6 @@ export const ProductCard = ({
     const discount = 20;
     const originalPrice = Math.round(price / (1 - discount / 100));
 
-    const shouldThrow = true;
-
-    if (shouldThrow) {
-        throw new Error("Testing ErrorBoundary");
-    }
-
     return (
         <li
             onClick={() => navigate(`/product/${id}`)}
